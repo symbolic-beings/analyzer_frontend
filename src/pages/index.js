@@ -1,34 +1,44 @@
 import * as React from "react"
-import { Chessboard } from "react-chessboard"
-import Chess from "chess.js"
-import { useState } from "react"
+import Board from "./board"
 
+const styles = {
+  container: {
+    display: "flex",
+    "flex-direction": "column"
+  },
 
+  sidebar: {
+    "flex-direction": "row",
+    flex: 1
+  },
+  wrapper: {
+    display: "flex",
+    "flex-direction": "row"
+  },
+  main: {
+    flex: 1,
+    "marginRight": "60px"
+  }
+}
+
+// TODO: eventually this weill be the analysis page
 const IndexPage = () => {
-  const [game, setGame] = useState(new Chess())
-
-  function makeAMove(move) {
-    const gameCopy = { ...game };
-    const result = gameCopy.move(move);
-    setGame(gameCopy);
-    return result;
-  }
-
-  function onDrop(sourceSquare, targetSquare) {
-    const move = makeAMove({
-      from: sourceSquare,
-      to: targetSquare,
-      promotion: "q"
-    });
-
-    if (move === null) return false;
-
-    return true
-  }
   return (
-      <div>
-        <Chessboard id="board" position={game.fen()} onPieceDrop={onDrop}/>
+    <div style={styles.container}>
+      <div style={styles.wrapper}>
+        <aside style={styles.sidebar}>
+          <h3>The Sidebar</h3>
+        </aside>
+        <section style={styles.main}>
+          <h3>This is where the analysis will go</h3>
+          <Board/>
+        </section>
+        <aside style={styles.sidebar}>
+          <h3>The Rightbar. Where the moves will go</h3>
+        </aside>
       </div>
+
+    </div>
   )
 }
 
