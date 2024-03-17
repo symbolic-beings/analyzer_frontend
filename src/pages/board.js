@@ -1,28 +1,24 @@
 import * as React from "react"
 import { Chessboard } from "react-chessboard"
-import Chess from "chess.js"
-import { useState } from "react"
 
-const Board = () => {
-    const [game, setGame] = useState(new Chess())
+const Board = ({game, setGame}) => {
   
     function makeAMove(move) {
       const gameCopy = { ...game };
       const result = gameCopy.move(move);
+      if( result === null ){
+        return false
+      }
       setGame(gameCopy);
-      return result;
+      return true;
     }
   
     function onDrop(sourceSquare, targetSquare) {
-      const move = makeAMove({
+      return makeAMove({
         from: sourceSquare,
         to: targetSquare,
         promotion: "q"
       });
-  
-      if (move === null) return false;
-  
-      return true
     }
 
     return (

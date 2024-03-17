@@ -1,7 +1,6 @@
 import * as React from "react"
-import AnalysisPage from "./analysis"
+import AnalysisPage from "./analysisPage"
 
-// TODO: eventually this weill be the analysis page
 const IndexPage = () => {
   return (
     <AnalysisPage></AnalysisPage>
