@@ -1,12 +1,12 @@
-import * as React from "react"
+import * as React from "react";
 
-import { useEffect, useState } from "react"
-import useWebSocket, {ReadyState}from 'react-use-websocket'
+import { useEffect, useState } from "react";
+import useWebSocket, {ReadyState}from 'react-use-websocket';
 
 const AnalysisBar = ({game}) => {
     // here set up the connection for the web socket
     // probably put this into component did mount
-    const [socketUrl, setSocketUrl] = useState(process.env.GATSBY_SOCKET_URL);
+    const [socketUrl, setSocketUrl] = useState(process.env.SOCKET_URL);
     const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
     const [currentAnalysis, setCurrentAnalysis] = useState("");
     console.log(readyState === ReadyState.CLOSED)
